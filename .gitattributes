@@ -6,10 +6,10 @@ from datetime              import datetime
 
 class Contact:
     _id: int
-    _adresses: list [Adress]
-    _phones: list [Phone]
-    _emails: list [Email]
-    _sites: list [Site]
+    _adresses: list[Adress]
+    _phones: list[Phone]
+    _emails: list[Email]
+    _sites: list[Site]
     _createdAt: datetime
     _updatedAt: datetime 
 
@@ -19,7 +19,7 @@ class Contact:
         self._phones = phones
         self._emails = emails
         self._sites = sites
-        self._createdAt: datetime.now ()
+        self._createdAt: datetime.now()
         self._updatedAt = datetime.now()
 
     def get_id(self):
