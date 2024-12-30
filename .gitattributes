@@ -1,11 +1,15 @@
-from datetime import datetime
+from src.model.contact    import Contact
+from datetime             import date, datetime
 
-class Phone: 
+class Contact:
     def __init__(self):
         self._id = None
-        self._number = None
-        self._type = None
-        self._main = None  
+        self._name = None
+        self._login = None
+        self._adresses = [Adress]
+        self._phones = [Phone]
+        self._emails = [Email]
+        self._sites = [Site]
         self._createdAt = None
         self._updatedAt = None
 
@@ -15,23 +19,44 @@ class Phone:
     def set_id(self, value: int):
         self._id = value
 
-    def get_number(self):
-        return self._number
+    def get_name(self):
+        return self._name
 
-    def set_number(self, value: str):
-        self._number = value
+    def set_name(self, value: str):
+        self._name = value
 
-    def get_type(self):
-        return self._type
+    def get_login(self):
+        return self._login
 
-    def set_type(self, value: str):
-        self._type = value
+    def set_login(self, value: str):
+        self._login = value
 
-    def get_main(self):
-        return self._main
+    def set_updatedAt(self, value: datetime):
+        self._updatedAt = value
 
-    def set_main(self, value: bool):
-        self._main = value
+    def get_adresses(self):
+        return self._adresses
+
+    def set_adresses(self, value: list):
+        self._adresses = value
+
+    def get_phones(self):
+        return self._phones
+
+    def set_phones(self, value: list):
+        self._phones = value
+
+    def get_emails(self):
+        return self._emails
+
+    def set_emails(self, value: list):
+        self._emails = value
+
+    def get_sites(self):
+        return self._sites
+
+    def set_sites(self, value: list):
+        self._sites = value
 
     def get_createdAt(self):
         return self._createdAt
@@ -42,32 +67,33 @@ class Phone:
     def get_updatedAt(self):
         return self._updatedAt
 
-    def set_updatedAt(self, value: datetime):
-        self._updatedAt = value
-
     def __hash__(self):
-        return hash((self._id, self._number, self._type, self._main))
+        return hash((self._id, self._name, self._login,))
 
     def __eq__(self, other):
-        if not isinstance(other, Phone):
+        if not isinstance(other, contact):
             return False
-        return self._id == other._id and self._number == other._number
+        return (self._id == other.get_id() and
+                self._name == other.get_name() and
+                self._login == other.get_login())
 
     def __str__(self):
-        return (f"Phone(id={self._id}, number={self._number}, type={self._type}, "
-                f"is_main={self._main}, created_at={self._created_at}, updated_at={self._updated_at})")
+        return (f"User(id={self._id}, name={self._name}, login={self._login}, "
+                f"createdAt={self._createdAt}, updatedAt={self._updatedAt})")
 
     @classmethod
     def builder(cls):
-        return cls.PhoneBuilder()
+        return cls.ContactBuilder()
 
-    class PhoneBuilder:
-        def __init__(self):
-            self._phone = Phone()
 
-        def id(self, value: int):
-            self._phone.set_id(value)
-            return self
-    
-        def build(self):
-            return self._phone
+class ContactBuilder:
+    def __init__(self):
+        self._user = contact()
+
+    def id(self, value: int):
+        self._user.set_id(value)
+        return self
+
+    def name(self, value: str):
+        self._user.set_name(value)
+        return self
