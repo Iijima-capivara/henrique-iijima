@@ -1,0 +1,94 @@
+from src.model.adresses    import Adress
+from src.model.phones      import Phone
+from src.model.email       import Email
+from src.model.sites       import Site
+from datetime              import datetime
+
+class Contact:
+    _id: int
+    _adresses: list[Adress]
+    _phones: list[Phone]
+    _emails: list[Email]
+    _sites: list[Site]
+    _createdAt: datetime
+    _updatedAt: datetime 
+
+    def __init__(self):
+        self._id = None
+        self._adresses = adresses
+        self._phones = phones
+        self._emails = emails
+        self._sites = sites
+        self._createdAt: datetime.now()
+        self._updatedAt = datetime.now()
+
+    def get_id(self):
+        return self._id
+
+    def set_id(self, value: int):
+        self._id = value
+
+    def get_adresses(self):
+        return self._adresses
+
+    def set_adresses(self, value: list):
+        self._adresses = value
+
+    def get_phones(self):
+        return self._phones
+
+    def set_phones(self, value: list):
+        self._phones = value
+
+    def get_emails(self):
+        return self._emails
+
+    def set_emails(self, value: list):
+        self._sites = value
+
+    def get_sites(self):
+        return self._sites
+
+    def set_sites(self, value: list):
+        self._sites = value
+
+    def set_updatedAt(self, value: datetime):
+        self._updatedAt = value
+
+    def get_createdAt(self):
+        return self._createdAt
+
+    def set_createdAt(self, value: datetime):
+        self._createdAt = value
+
+    def get_updatedAt(self):
+        return self._updatedAt
+
+    def __hash__(self):
+        return hash((self._id))
+
+    def __eq__(self, other):
+        if not isinstance(other, Contact):
+            return False
+        return (self._id == other.get_id())
+
+    def __str__(self):
+        return (f"Contact(id={self._id}, adresses={self._adresses}, phones={self._phones}, emails={self._emails}, sites={self._sites} "
+                f"createdAt={self._createdAt}, updatedAt={self._updatedAt})")
+
+    @classmethod
+    def builder(cls):
+        return cls.ContactBuilder()
+
+
+class ContactBuilder:
+    def __init__(self):
+        self._user = contact()
+
+    def id(self, value: int):
+        self._user.set_id(value)
+        return self
+
+    def name(self, value: str):
+        self._user.set_name(value)
+        return self
